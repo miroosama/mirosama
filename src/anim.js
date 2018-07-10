@@ -8,11 +8,19 @@ import TransitionGroup from 'react-addons-transition-group';
 import FirstTooth from './firsttooth.js'
 import './style.css'
 import ReactPlayer from 'react-player';
+// import PitchAnalyzer from './pitch.js';
+import getUserMedia from "./getusermedia"
+
+import PitchAnalyzer from './pitch-js/pitch';
+// import p5 from 'p5'
+// import 'p5/lib/addons/p5.sound'
+// import P5Wrapper from 'react-p5-wrapper';
+// import Audio from "./audio.js"
 
 //or get to the parts that aren't included inside TweenMax:
 // import Draggable from "gsap/Draggable";
 // import ScrollToPlugin from "gsap/ScrollToPlugin";
-
+// let mic, fft;
 class Anim extends Component {
 
   // recordAudio = () => {
@@ -22,49 +30,35 @@ class Anim extends Component {
   //       mediaRecorder.start();
   //       console.log(mediaRecorder)
   //     });
-  //
+
   // };
 
-  newSound = (source,volume,loop) => {
-  {
-      this.source=source;
-      this.volume=volume;
-      this.loop=loop;
-      var son;
-      this.son=son;
-      this.finish=false;
-      this.stop=function()
-      {
-          document.body.removeChild(this.son);
-      }
-      this.start=function()
-      {
-          if(this.finish)return false;
-          this.son=document.createElement("embed");
-          this.son.setAttribute("src",this.source);
-          this.son.setAttribute("hidden","true");
-          this.son.setAttribute("volume",this.volume);
-          this.son.setAttribute("autostart","true");
-          this.son.setAttribute("loop",this.loop);
-          document.body.appendChild(this.son);
-      }
-      this.remove=function()
-      {
-          document.body.removeChild(this.son);
-          this.finish=true;
-      }
-      this.init=function(volume,loop)
-      {
-          this.finish=false;
-          this.volume=volume;
-          this.loop=loop;
-      }
-  }
-}
+    sound = () => {
 
-  render() {
-    console.log(this.recordAudio)
-    return(
+      const getUserMedia = require('get-user-media-promise');
+      const MicrophoneStream = require('microphone-stream');
+
+      getUserMedia({ video:false, audio:true })
+        .then((stream) => {
+          const micStream = new MicrophoneStream(stream, { bufferSize: 4096 });
+          micStream.on('data', (chunk) => {
+            const raw = MicrophoneStream.toRaw(chunk);
+            const pitch = new PitchAnalyzer(44100); // all pitch analysis functionality stems from this object
+            pitch.input(raw); // the object takes in raw Float32 integer arrays
+            pitch.process(); // it takes a split-second to turn it into actionable data
+            const tone = pitch.findTone();
+            if (tone) {
+              const freq = tone.freq; // line 16
+              console.log(freq);
+            }
+          });
+        });
+  }
+
+
+  render(){
+    console.log(<getUserMedia />)
+    return (
       <div className="page">
       </div>
     );
@@ -72,5 +66,28 @@ class Anim extends Component {
 }
 
 export default GSAP()(Anim);
+
+// setup = () => {
+//    p5.createCanvas(710,400);
+//    p5.noFill();
+//
+//    mic = new p5.AudioIn();
+//    mic.start();
+//    fft = new p5.FFT();
+//    fft.setInput(mic);
+// }
+//
+//  draw = () => {
+//    p5.background(200);
+//
+//    let spectrum = fft.analyze();
+//
+//    p5.beginShape();
+//    for (p5.i = 0; p5.i<spectrum.length; p5.i++) {
+//     p5.vertex(p5.i, p5.map(spectrum[p5.i], 0, 255, p5.height, 0) );
+//    }
+//    p5.endShape();
+// }
+
 
     // <div className="about" ref={c => this.container = c} />
