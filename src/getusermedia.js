@@ -1,12 +1,13 @@
 import PitchAnalyzer from './pitch-js/pitch';
-//
+import Anim from './anim'
+import Dots from './dot'
 const getUserMedia = require('get-user-media-promise');
 const MicrophoneStream = require('microphone-stream');
-//
+
 
 // MICROPHONE INPUT CODE
-export default getUserMedia({ video: false, audio: true })
-
+export default getUserMedia({ video: false, audio: true})
+let frequency = [];
 getUserMedia({ video:false, audio:true })
   .then((stream) => {
     const micStream = new MicrophoneStream(stream, { bufferSize: 4096 });
@@ -18,7 +19,8 @@ getUserMedia({ video:false, audio:true })
       const tone = pitch.findTone();
       if (tone) {
         const freq = tone.freq; // line 16
-        console.log(freq);
+        console.log(freq)
+        // frequency.push(freq)
       }
     });
   });

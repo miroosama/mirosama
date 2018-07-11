@@ -9,9 +9,10 @@ import FirstTooth from './firsttooth.js'
 import './style.css'
 import ReactPlayer from 'react-player';
 // import PitchAnalyzer from './pitch.js';
-import getUserMedia from "./getusermedia"
+// import getUserMedia from "./getusermedia"
 
 import PitchAnalyzer from './pitch-js/pitch';
+import Dots from './dot'
 // import p5 from 'p5'
 // import 'p5/lib/addons/p5.sound'
 // import P5Wrapper from 'react-p5-wrapper';
@@ -21,11 +22,65 @@ import PitchAnalyzer from './pitch-js/pitch';
 // import Draggable from "gsap/Draggable";
 // import ScrollToPlugin from "gsap/ScrollToPlugin";
 // let mic, fft;
+// const getUserMedia = require('get-user-media-promise');
+// const MicrophoneStream = require('microphone-stream');
+//
+//
+// // MICROPHONE INPUT CODE
+// let frequency;
+// getUserMedia({ video: false, audio: true})
+// getUserMedia({ video:false, audio:true })
+//   .then((stream) => {
+//     const micStream = new MicrophoneStream(stream, { bufferSize: 4096 });
+//     micStream.on('data', (chunk) => {
+//       const raw = MicrophoneStream.toRaw(chunk);
+//       const pitch = new PitchAnalyzer(44100); // all pitch analysis functionality stems from this object
+//       pitch.input(raw); // the object takes in raw Float32 integer arrays
+//       pitch.process(); // it takes a split-second to turn it into actionable data
+//       const tone = pitch.findTone();
+//       if (tone) {
+//         const freq = tone.freq; // line 16
+//         console.log(freq)
+//         frequency = freq
+//       }
+//     });
+//   });
+
 class Anim extends Component {
   state = {
-    freq: null
+    freq: []
   }
 
+  componentDidMount(){
+    this.getSound()
+  }
+
+getSound = () => {
+  const getUserMedia = require('get-user-media-promise');
+  const MicrophoneStream = require('microphone-stream');
+
+
+  // MICROPHONE INPUT CODE
+  getUserMedia({ video: false, audio: true})
+  getUserMedia({ video:false, audio:true })
+    .then((stream) => {
+      const micStream = new MicrophoneStream(stream, { bufferSize: 4096 });
+      micStream.on('data', (chunk) => {
+        const raw = MicrophoneStream.toRaw(chunk);
+        const pitch = new PitchAnalyzer(44100); // all pitch analysis functionality stems from this object
+        pitch.input(raw); // the object takes in raw Float32 integer arrays
+        pitch.process(); // it takes a split-second to turn it into actionable data
+        const tone = pitch.findTone();
+        if (tone) {
+          const freq = tone.freq; // line 16
+          console.log(freq)
+          this.setState({
+            freq: freq
+          })
+        }
+      });
+    });
+}
   // recordAudio = () => {
   //   navigator.mediaDevices.getUserMedia({ audio: true })
   //     .then(stream => {
@@ -58,28 +113,28 @@ class Anim extends Component {
   //       });
   // }
 
-  setFreq = () => {
-    let newFreq = <getUserMedia />
+  setFreq = (num) => {
+    let arr = []
+    arr.push(num)
     this.setState({
-      freq: newFreq
+      freq: arr
     })
   }
 
 
   render(){
     console.log(this.state.freq)
-    // console.log(<getUserMedia />)
-    let num = this.state.freq
+
     return (
       <div className="page">
-      {num}
       </div>
     );
   }
 }
 
 export default GSAP()(Anim);
-
+      <Dots />
+      // <getUserMedia getFreqs={this.setFreq} />
 // setup = () => {
 //    p5.createCanvas(710,400);
 //    p5.noFill();
