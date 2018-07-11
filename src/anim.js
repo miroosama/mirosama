@@ -22,6 +22,9 @@ import PitchAnalyzer from './pitch-js/pitch';
 // import ScrollToPlugin from "gsap/ScrollToPlugin";
 // let mic, fft;
 class Anim extends Component {
+  state = {
+    freq: null
+  }
 
   // recordAudio = () => {
   //   navigator.mediaDevices.getUserMedia({ audio: true })
@@ -33,33 +36,43 @@ class Anim extends Component {
 
   // };
 
-    sound = () => {
+  //   sound = () => {
+  //
+  //     const getUserMedia = require('get-user-media-promise');
+  //     const MicrophoneStream = require('microphone-stream');
+  //
+  //     getUserMedia({ video:false, audio:true })
+  //       .then((stream) => {
+  //         const micStream = new MicrophoneStream(stream, { bufferSize: 4096 });
+  //         micStream.on('data', (chunk) => {
+  //           const raw = MicrophoneStream.toRaw(chunk);
+  //           const pitch = new PitchAnalyzer(44100); // all pitch analysis functionality stems from this object
+  //           pitch.input(raw); // the object takes in raw Float32 integer arrays
+  //           pitch.process(); // it takes a split-second to turn it into actionable data
+  //           const tone = pitch.findTone();
+  //           if (tone) {
+  //             const freq = tone.freq; // line 16
+  //             console.log(freq);
+  //           }
+  //         });
+  //       });
+  // }
 
-      const getUserMedia = require('get-user-media-promise');
-      const MicrophoneStream = require('microphone-stream');
-
-      getUserMedia({ video:false, audio:true })
-        .then((stream) => {
-          const micStream = new MicrophoneStream(stream, { bufferSize: 4096 });
-          micStream.on('data', (chunk) => {
-            const raw = MicrophoneStream.toRaw(chunk);
-            const pitch = new PitchAnalyzer(44100); // all pitch analysis functionality stems from this object
-            pitch.input(raw); // the object takes in raw Float32 integer arrays
-            pitch.process(); // it takes a split-second to turn it into actionable data
-            const tone = pitch.findTone();
-            if (tone) {
-              const freq = tone.freq; // line 16
-              console.log(freq);
-            }
-          });
-        });
+  setFreq = () => {
+    let newFreq = <getUserMedia />
+    this.setState({
+      freq: newFreq
+    })
   }
 
 
   render(){
-    console.log(<getUserMedia />)
+    console.log(this.state.freq)
+    // console.log(<getUserMedia />)
+    let num = this.state.freq
     return (
       <div className="page">
+      {num}
       </div>
     );
   }
