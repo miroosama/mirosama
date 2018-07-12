@@ -8,11 +8,13 @@ import TransitionGroup from 'react-addons-transition-group';
 import FirstTooth from './firsttooth.js'
 import './style.css'
 import ReactPlayer from 'react-player';
+
+
 // import PitchAnalyzer from './pitch.js';
 // import getUserMedia from "./getusermedia"
 
 import PitchAnalyzer from './pitch-js/pitch';
-import Dots from './dot'
+import Dots from './dot.js'
 // import p5 from 'p5'
 // import 'p5/lib/addons/p5.sound'
 // import P5Wrapper from 'react-p5-wrapper';
@@ -74,9 +76,10 @@ getSound = () => {
         if (tone) {
           const freq = tone.freq; // line 16
           console.log(freq)
-          this.setState({
-            freq: freq
-          })
+          this.setFreq(freq)
+          // this.setState({
+          //   freq: freq
+          // })
         }
       });
     });
@@ -114,7 +117,7 @@ getSound = () => {
   // }
 
   setFreq = (num) => {
-    let arr = []
+    let arr = this.state.freq
     arr.push(num)
     this.setState({
       freq: arr
@@ -127,13 +130,14 @@ getSound = () => {
 
     return (
       <div className="page">
+      <Dots freqs={this.state.freq} />
       </div>
     );
   }
 }
 
 export default GSAP()(Anim);
-      <Dots />
+
       // <getUserMedia getFreqs={this.setFreq} />
 // setup = () => {
 //    p5.createCanvas(710,400);

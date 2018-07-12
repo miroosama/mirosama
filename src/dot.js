@@ -13,16 +13,29 @@ componentDidMount(){
     this.props.animateFauxDOM(800)
   }
 
-test = () => {
-  console.log(this.props.freqs)
+makeDot = () => {
+  for(let i = 0; i < this.props.freqs.length; i++){
+    d3.selectAll("circle")
+    .classed('item--transitioning', true)
+    .style('fill', 'white')
+    .attr("r", 30)
+    .transition().duration(750)
+    .attr("r", 20)
+    .style('fill', 'black')
+    return <circle cx={40} cy={40} r="20"></circle>
 }
+
+
+  }
 
 
   render(){
 
     return(
       <div>
-      {this.test()}
+      <svg width="1300" height="720">
+      {this.makeDot()}
+      </svg>
       </div>
     )
   }
