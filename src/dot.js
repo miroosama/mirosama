@@ -13,28 +13,35 @@ componentDidMount(){
     this.props.animateFauxDOM(800)
   }
 
+// makeDot = () => {
+//   for(let i = 0; i < this.props.freqs.length; i++){
+//     if(this.props.freqs[i] < 250){
+//     d3.selectAll("circle")
+//     .classed('item--transitioning', true)
+//     .style('fill', 'white')
+//     .attr("r", 30)
+//     .transition().duration(750)
+//     .attr("r", 30)
+//     .style('fill', 'blue')
+//     return <circle cx={40} cy={40} r="20"></circle>
+//   } else {
+//   d3.selectAll("circle")
+//   .classed('item--transitioning', true)
+//   .style('fill', 'white')
+//   .attr("r", 30)
+//   .transition().duration(750)
+//   .attr("r", 20)
+//   .style('fill', 'red')
+//   return <circle cx={60} cy={100} r="20"></circle>
+//     }
+//   }
+// }
+
 makeDot = () => {
-  for(let i = 0; i < this.props.freqs.length; i++){
-    if(this.props.freqs[i] < 250){
-    d3.selectAll("circle")
-    .classed('item--transitioning', true)
-    .style('fill', 'white')
-    .attr("r", 30)
-    .transition().duration(750)
-    .attr("r", 30)
-    .style('fill', 'blue')
-    return <circle cx={40} cy={40} r="20"></circle>
-  } else {
-  d3.selectAll("circle")
-  .classed('item--transitioning', true)
-  .style('fill', 'white')
-  .attr("r", 30)
-  .transition().duration(750)
-  .attr("r", 20)
-  .style('fill', 'red')
-  return <circle cx={60} cy={100} r="20"></circle>
-    }
-  }
+  var p = d3.select("body")
+    .selectAll("p")
+    .data(this.props.freqs)
+    .text(function(d) { return d; });
 }
 
 
@@ -43,7 +50,9 @@ makeDot = () => {
     return(
       <div>
       <svg width="1300" height="720">
+      <p>
       {this.makeDot()}
+      </p>
       </svg>
       </div>
     )
