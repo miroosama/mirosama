@@ -17,10 +17,13 @@ makeDot = () => {
   let num1 = 20
   let num2 = 40
   let frequencies = this.props.freqs
-  return frequencies.map(user => {
+  return frequencies.map(freq => {
     num1 += 20
     num2 += 20
-  return  <circle cx={num1} cy={num2} r="20"></circle>
+    if(freq < 300){
+  return  <circle fill="red" cx={num1} cy={num2} r="20"></circle>
+} else{ return <circle fill="blue" cx={num1} cy={num2} r="20"></circle>
+}
 })
   // for(let i = 0; i < this.props.freqs.length; i++){
   //
