@@ -61,6 +61,7 @@ makeDot = () => {
 
   render(){
 console.log(this.makeDot())
+console.log(Math.random())
     return(
       <div>
       <svg width="1300" height="720">
