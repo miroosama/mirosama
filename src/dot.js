@@ -14,11 +14,12 @@ componentDidMount(){
   }
 
 makeDot = () => {
+  let num3 = Math.random() * 100
   let num1 = 20
   let num2 = 40
   let frequencies = this.props.freqs
   return frequencies.map(freq => {
-    num1 += 20
+    num1 += Math.random() * 100
     num2 += 20
     if(freq < 300){
   return  <circle fill="red" cx={num1} cy={num2} r="20"></circle>
@@ -61,7 +62,7 @@ makeDot = () => {
 
   render(){
 console.log(this.makeDot())
-console.log(Math.random())
+// console.log("ahhhhhhhhh", Math.random())
     return(
       <div>
       <svg width="1300" height="720">
