@@ -19,12 +19,17 @@ makeDot = () => {
   let num2 = 40
   let frequencies = this.props.freqs
   return frequencies.map(freq => {
-    num1 += Math.random() * 100
-    num2 += 20
+    if(num1 >= 1270){
+      num1 = 20
+      num2 += 3
+  } else {
+    num1 += Math.floor((Math.random() * 100) + 1)
+    num2 += 1
+  }
     if(freq < 300){
-  return  <circle fill="red" cx={num1} cy={num2} r="20"></circle>
-} else{ return <circle fill="blue" cx={num1} cy={num2} r="20"></circle>
-}
+  return  <circle opacity=".5" fill="red" cx={num1} cy={num2} r="20"></circle>
+} else if (freq > 300 && freq < 550 ) { return <circle opacity=".5" fill="blue" cx={num1} cy={num2} r="20"></circle>
+} else { return <circle opacity=".5" fill="yellow" cx={num1} cy={num2} r="20"></circle> }
 })
   // for(let i = 0; i < this.props.freqs.length; i++){
   //
@@ -61,6 +66,12 @@ makeDot = () => {
 
 
   render(){
+    // d3.selectAll("circle")
+    // .classed('item--transitioning', true)
+    // .style('fill', 'white')
+    // .attr("r", 30)
+    // .transition().duration(750)
+    // .attr("r", 20)
 console.log(this.makeDot())
 // console.log("ahhhhhhhhh", Math.random())
     return(
