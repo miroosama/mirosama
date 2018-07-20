@@ -13,6 +13,7 @@ componentDidMount(){
     this.props.animateFauxDOM(800)
   }
 
+// notes for friday 20... make options (squares, distances between, adjusting colors)
 makeDot = () => {
   let num3 = Math.random() * 100
   let num1 = 20
@@ -21,12 +22,14 @@ makeDot = () => {
   return frequencies.map(freq => {
     if(num1 >= 1270){
       num1 = 20
-      num2 += 1.5
+      num2 += 25
+      // 40 has space
   } else {
-    let placement = Math.floor((Math.random() * 100) + 0.3)
-    num1 += placement
-    // num1 += 10
-    num2 += 1
+    const placement = Math.floor((Math.random() * 60) + 1)
+
+    // num1 += placement
+    num1 += 30
+    // num2 += 1
   }
     if(freq < 250){
   return  <circle onLoad={this.handleLoad()} opacity=".75" fill="red" cx={num1} cy={num2} r="20"></circle>
