@@ -21,16 +21,22 @@ makeDot = () => {
   return frequencies.map(freq => {
     if(num1 >= 1270){
       num1 = 20
-      num2 += 3
+      num2 += 1.5
   } else {
-    num1 += Math.floor((Math.random() * 100) + 1)
+    let placement = Math.floor((Math.random() * 100) + 0.3)
+    num1 += placement
+    // num1 += 10
     num2 += 1
   }
-    if(freq < 300){
-  return  <circle opacity=".5" fill="red" cx={num1} cy={num2} r="20"></circle>
-} else if (freq > 300 && freq < 550 ) { return <circle opacity=".5" fill="blue" cx={num1} cy={num2} r="20"></circle>
-} else { return <circle opacity=".5" fill="yellow" cx={num1} cy={num2} r="20"></circle> }
-})
+    if(freq < 250){
+  return  <circle onLoad={this.handleLoad()} opacity=".75" fill="red" cx={num1} cy={num2} r="20"></circle>
+} else if (freq > 250 && freq < 290 ) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="orange" cx={num1} cy={num2} r="20"></circle>
+} else if (freq > 290 && freq< 365) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="yellow" cx={num1} cy={num2} r="20"></circle>
+} else if (freq > 365 && freq< 440) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="green" cx={num1} cy={num2} r="20"></circle>
+} else if (freq > 440 && freq< 760) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="blue" cx={num1} cy={num2} r="20"></circle>
+} else {return <circle onLoad={this.handleLoad()} opacity=".75" fill="violet" cx={num1} cy={num2} r="20"></circle>
+}
+} )
   // for(let i = 0; i < this.props.freqs.length; i++){
   //
   // }
@@ -54,6 +60,28 @@ makeDot = () => {
   // return <circle cx={60} cy={100} r="20"></circle>
   //   }
   // }
+}
+
+handleLoad = () => {
+   // let circle1 = d3.select("circle:nth-child(1n)")
+   // let curcle = d3.selectAll("circle")
+   //  d3.select("circle:nth-child(-1n)")
+   //  .classed('item--transitioning', true)
+   //  .style('fill', 'white')
+   //  .attr("r", 30)
+   //  .transition().duration(750)
+   //  .attr("r", 30)
+   //  .style('fill', 'blue')
+   //  return <circle cx={40} cy={40} r="20"></circle>
+   let last = d3.selectAll("circle").select(function() {
+  return this.lastElementChild;
+});
+ last.classed('item--transitioning', true)
+ last.style('fill', 'white')
+ last.attr("r", 30)
+ last.transition().duration(750)
+ last.attr("r", 30)
+
 }
 
 // makeDot = () => {
