@@ -35,8 +35,8 @@ makeDot = () => {
   return  <circle onLoad={this.handleLoad()} opacity=".75" fill="red" cx={num1} cy={num2} r="20"></circle>
 } else if (freq > 250 && freq < 290 ) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="orange" cx={num1} cy={num2} r="20"></circle>
 } else if (freq > 290 && freq< 365) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="yellow" cx={num1} cy={num2} r="20"></circle>
-} else if (freq > 365 && freq< 440) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="green" cx={num1} cy={num2} r="20"></circle>
-} else if (freq > 440 && freq< 760) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="blue" cx={num1} cy={num2} r="20"></circle>
+} else if (freq > 365 && freq< 450) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="green" cx={num1} cy={num2} r="20"></circle>
+} else if (freq > 450 && freq< 760) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="blue" cx={num1} cy={num2} r="20"></circle>
 } else {return <circle onLoad={this.handleLoad()} opacity=".75" fill="violet" cx={num1} cy={num2} r="20"></circle>
 }
 } )
