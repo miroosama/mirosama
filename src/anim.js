@@ -50,12 +50,13 @@ import Dots from './dot.js'
 
 class Anim extends Component {
   state = {
-    freq: []
+    freq: [],
+    record: false,
   }
 
-  componentDidMount(){
-    this.getSound()
-  }
+  // componentDidMount(){
+  //   this.getSound()
+  // }
 
 getSound = () => {
   const getUserMedia = require('get-user-media-promise');
@@ -124,13 +125,26 @@ getSound = () => {
     })
   }
 
+  startRecording = () => {
+    this.getSound()
+    this.setState({
+      record: !this.state.record
+    })
+  }
+
 
   render(){
     console.log(this.state.freq)
 
     return (
       <div className="page">
-      <Dots freqs={this.state.freq} />
+      <button
+      className="btn"
+      onClick={this.startRecording}
+      >
+      Start
+      </button>
+      {this.state.record ? <Dots freqs={this.state.freq} /> : null}
       </div>
     );
   }
