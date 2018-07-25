@@ -52,6 +52,8 @@ class Anim extends Component {
   state = {
     freq: [],
     record: false,
+    size: 20,
+    space: false,
   }
 
   // componentDidMount(){
@@ -136,6 +138,19 @@ getSound = () => {
     })
   }
 
+  handleSize = (e) => {
+    console.log(e.target.value)
+    let newSize = e.target.value
+    this.setState({
+      size: newSize
+    })
+  }
+
+  handleSpace = (e) => {
+    this.setState({
+      space: !this.state.space
+    })
+}
 
   render(){
     console.log(this.state.freq)
@@ -148,13 +163,27 @@ getSound = () => {
       >
       Start
       </button>
-      {this.state.record ? <Dots freqs={this.state.freq} /> : null}
+      {this.state.record ? <Dots freqs={this.state.freq} space={this.state.space} size={this.state.size} /> : null}
+      <form>
+        <label>
+          Size:
+          <input onChange={this.handleSize} type="text" name="size" />
+        </label>
+      </form>
+      <button
+      className="btn"
+      onClick={this.handleSpace}
+      >
+      Randomize
+      </button>
       </div>
     );
   }
 }
 
 export default GSAP()(Anim);
+
+        // <input type="submit" value="Submit" />
 
       // <getUserMedia getFreqs={this.setFreq} />
 // setup = () => {

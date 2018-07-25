@@ -26,18 +26,21 @@ makeDot = () => {
       // 40 has space
   } else {
     const placement = Math.floor((Math.random() * 60) + 1)
-
+    if(this.props.space == true){
+      num1 += placement
+    } else {
     // num1 += placement
     num1 += 30
     // num2 += 1
+    }
   }
     if(freq < 250){
-  return  <circle onLoad={this.handleLoad()} opacity=".75" fill="red" cx={num1} cy={num2} r="20"></circle>
-} else if (freq > 250 && freq < 290 ) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="orange" cx={num1} cy={num2} r="20"></circle>
-} else if (freq > 290 && freq< 365) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="yellow" cx={num1} cy={num2} r="20"></circle>
-} else if (freq > 365 && freq< 450) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="green" cx={num1} cy={num2} r="20"></circle>
-} else if (freq > 450 && freq< 760) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="blue" cx={num1} cy={num2} r="20"></circle>
-} else {return <circle onLoad={this.handleLoad()} opacity=".75" fill="violet" cx={num1} cy={num2} r="20"></circle>
+  return  <circle onLoad={this.handleLoad()} opacity=".75" fill="red" cx={num1} cy={num2} r={this.props.size}></circle>
+} else if (freq > 250 && freq < 290 ) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="orange" cx={num1} cy={num2} r={this.props.size}></circle>
+} else if (freq > 290 && freq< 365) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="yellow" cx={num1} cy={num2} r={this.props.size}></circle>
+} else if (freq > 365 && freq< 450) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="green" cx={num1} cy={num2} r={this.props.size}></circle>
+} else if (freq > 450 && freq< 760) { return <circle onLoad={this.handleLoad()} opacity=".75" fill="blue" cx={num1} cy={num2} r={this.props.size}></circle>
+} else {return <circle onLoad={this.handleLoad()} opacity=".75" fill="violet" cx={num1} cy={num2} r={this.props.size}></circle>
 }
 } )
   // for(let i = 0; i < this.props.freqs.length; i++){
