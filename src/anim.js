@@ -118,11 +118,15 @@ getSound = () => {
   // }
 
   setFreq = (num) => {
+    if(this.state.record == true){
     let arr = this.state.freq
     arr.push(num)
     this.setState({
       freq: arr
-    })
+      })
+    } else {
+      null
+    }
   }
 
   startRecording = () => {
