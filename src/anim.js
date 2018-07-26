@@ -174,7 +174,7 @@ getSound = () => {
       className="btn"
       onClick={this.handleSpace}
       >
-      Randomize
+      Animate
       </button>
       </div>
     );
