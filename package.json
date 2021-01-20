@@ -9,7 +9,7 @@
     "decimal.js": "^10.0.1",
     "fft": "^0.2.1",
     "get-user-media-promise": "^1.1.4",
-    "gsap": "^2.0.1",
+    "gsap": "^3.6.0",
     "microphone-pitch": "^0.7.1",
     "microphone-stream": "^4.1.3",
     "p5": "^0.6.1",
